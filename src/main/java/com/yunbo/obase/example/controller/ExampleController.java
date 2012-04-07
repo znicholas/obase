@@ -12,18 +12,18 @@ import com.yunbo.obase.example.model.ExampleModel;
 import com.yunbo.obase.core.controller.BaseRestSpringController;
 
 @Controller
-@RequestMapping("/helloworld")
+@RequestMapping("/example")
 public class ExampleController extends BaseRestSpringController<ExampleModel, java.lang.Long> {
 
 	@Override
 	public ModelAndView index(HttpServletRequest request, HttpServletResponse response, ExampleModel model) {
 		System.out.println("index");
-		return new ModelAndView("/helloworld/index");
+		return new ModelAndView("/example/index");
 	}
 
 	@Override
 	public ModelAndView show(@PathVariable java.lang.Long id) throws Exception {
 		System.out.println("get: " + id);
-		return new ModelAndView("/helloworld/view");
+		return new ModelAndView("/example/view");
 	}
 }
