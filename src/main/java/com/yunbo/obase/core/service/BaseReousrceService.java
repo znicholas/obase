@@ -4,10 +4,15 @@ import java.util.List;
 
 import com.yunbo.obase.core.dao.EntityDao;
 import com.yunbo.obase.core.dao.Expression;
+import com.yunbo.obase.core.dao.Pager;
 
 public abstract class BaseReousrceService<T> {
 	public List<T> query(List<Expression> exps) {
 		return getDao().query(exps);
+	}
+
+	public Pager<T> query(List<Expression> exps, int pageNumber, int pageSize) {
+		return getDao().query(exps, pageNumber, pageSize);
 	}
 
 	public T find(Long id) {

@@ -13,4 +13,6 @@ public interface EntityDao<T> {
 	public boolean remove(T entity);
 
 	public <RT> List<RT> query(List<Expression> exps);
+
+	public Pager<T> query(List<Expression> exps, int pageNumber, int pageSize);
 }

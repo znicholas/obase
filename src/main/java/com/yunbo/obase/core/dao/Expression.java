@@ -7,6 +7,15 @@ public class Expression {
 	private String operator;
 	private Object value;
 
+	public Expression() {
+	}
+
+	public Expression(String name, String operator, String value) {
+		this.name = name;
+		this.operator = operator;
+		this.value = value;
+	}
+
 	public String getName() {
 		return name;
 	}
