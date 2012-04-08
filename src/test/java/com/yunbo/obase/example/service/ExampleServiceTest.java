@@ -1,6 +1,6 @@
 package com.yunbo.obase.example.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,5 +57,21 @@ public class ExampleServiceTest {
 		ExampleModel record = pager.getResult().iterator().next();
 		assertEquals(1, pager.getRecordCount());
 		assertEquals("tracy", record.getName());
+	}
+
+	@Test
+	public void testPager() {
+		// 循环创建100条记录
+		for (int i = 0; i < 100; i++) {
+			ExampleModel entity = new ExampleModel();
+			entity.setName("name" + i);
+			service.save(entity);
+		}
+
+		List<Expression> exps = new ArrayList<Expression>();
+		// 获取第一页数据，每页20条记录
+		Pager<ExampleModel> pager = service.query(exps, 1, 20);
+		assertEquals(pager.getResult().size(), 20);
+		assertEquals(pager.getPageCount(), 5); // 共5页
 	}
 }
