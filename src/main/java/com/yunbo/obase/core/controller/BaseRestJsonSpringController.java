@@ -1,13 +1,16 @@
 package com.yunbo.obase.core.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.yunbo.obase.core.dao.Expression;
+import com.yunbo.obase.core.dao.Pager;
 
 /**
  * 定义标准的rest方法以对应实体对象的操作,以达到统一rest的方法名称, 还可以避免子类需要重复编写@RequestMapping
@@ -24,60 +27,57 @@ import org.springframework.web.servlet.ModelAndView;
  * /module        PUT     => update()  
  * /module/{id}   DELETE  => delete()  
  * /module        DELETE  => batchDelete()
+ * /module/query  POST    => query()
  * </pre>
  * 
  * @author nicholas
  */
-public class BaseRestSpringController<Entity, PK> extends BaseSpringController {
-
-	// 特别说明: 由于spring的方法参数映射太过于灵活,如果以下参数不适应你,请自己修改参数并修改代码生成器模板
-	// 如果你不喜欢 HttpServletRequest request,HttpServletResponse response作为方法参数，也请删除
-
+public class BaseRestJsonSpringController<Entity, PK> extends BaseSpringController {
+	
 	@RequestMapping
-	public ModelAndView index(HttpServletRequest request, HttpServletResponse response, Entity model) {
+	public ModelAndView index(Entity model) {
 		throw new UnsupportedOperationException("not yet implement");
 	}
-
-	/** 进入新增 */
-	@RequestMapping(value = "/new")
-	public ModelAndView _new(HttpServletRequest request, HttpServletResponse response, Entity model) throws Exception {
-		throw new UnsupportedOperationException("not yet implement");
-	}
-
+	
 	/** 显示 */
 	@RequestMapping(value = "/{id}")
-	public ModelAndView show(@PathVariable PK id) throws Exception {
+	public @ResponseBody Entity view(Long id) throws Exception {
 		throw new UnsupportedOperationException("not yet implement");
 	}
-
+	
 	/** 编辑 */
 	@RequestMapping(value = "/{id}/edit")
-	public ModelAndView edit(@PathVariable PK id) throws Exception {
+	public @ResponseBody Entity edit(@PathVariable PK id) throws Exception {
 		throw new UnsupportedOperationException("not yet implement");
 	}
-
-	/** 保存新增 */
+	
+	/** 保存新增或更新 */
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView create(HttpServletRequest request, HttpServletResponse response, Entity model) throws Exception {
+	public @ResponseBody Entity save(Entity model) throws Exception {
 		throw new UnsupportedOperationException("not yet implement");
 	}
-
-	/** 保存更新 */
-	@RequestMapping(method = RequestMethod.PUT)
-	public ModelAndView update(HttpServletRequest request, HttpServletResponse response,
-			Entity model) throws Exception {
+	
+	/** 进入新增 */
+	@RequestMapping(value = "/new")
+	public @ResponseBody Entity _new(Entity model) throws Exception {
 		throw new UnsupportedOperationException("not yet implement");
 	}
-
+	
 	/** 删除 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ModelAndView delete(@PathVariable PK id) {
+	public @ResponseBody String delete(@PathVariable PK id) {
 		throw new UnsupportedOperationException("not yet implement");
 	}
-
+	
 	/** 批量删除 */
 	@RequestMapping(method = RequestMethod.DELETE)
-	public ModelAndView batchDelete(@RequestParam("items") PK[] items) {
+	public @ResponseBody String batchDelete(@RequestParam("ids") PK[] items) {
+		throw new UnsupportedOperationException("not yet implement");
+	}
+	
+	/** 查询 */
+	@RequestMapping(value = "/query")
+	public @ResponseBody Pager<Entity> query(List<Expression> exps) {
 		throw new UnsupportedOperationException("not yet implement");
 	}
 }
