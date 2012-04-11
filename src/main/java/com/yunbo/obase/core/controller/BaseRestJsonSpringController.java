@@ -1,5 +1,6 @@
 package com.yunbo.obase.core.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yunbo.obase.core.controller.format.JsonFormat;
 import com.yunbo.obase.core.dao.Expression;
 import com.yunbo.obase.core.dao.Pager;
 
@@ -77,7 +79,8 @@ public class BaseRestJsonSpringController<Entity, PK> extends BaseSpringControll
 	
 	/** 查询 */
 	@RequestMapping(value = "/query")
-	public @ResponseBody Pager<Entity> query(List<Expression> exps) {
+	public @ResponseBody Pager<Entity> query(
+			@RequestParam @JsonFormat(contentType=Expression.class) List<Expression> exps) {
 		throw new UnsupportedOperationException("not yet implement");
 	}
 }
