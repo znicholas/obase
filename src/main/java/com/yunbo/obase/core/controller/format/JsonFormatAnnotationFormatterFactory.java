@@ -81,6 +81,8 @@ public class JsonFormatAnnotationFormatterFactory implements AnnotationFormatter
 						data = mapper.readValue(text, TypeFactory.collectionType(List.class, contentType));
 					} else if (Set.class.equals(fieldType)) {
 						data = mapper.readValue(text, TypeFactory.collectionType(Set.class, contentType));
+					} else {
+						data = mapper.readValue(text, contentType);
 					}
 				} else {
 					data = mapper.readValue(text, contentType);
