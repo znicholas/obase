@@ -27,5 +27,7 @@ public interface ResourceService<T> {
 
 	public boolean removeById(Long id);
 
+	public void removeByIds(Long... id);
+
 	public boolean remove(T entity);
 }

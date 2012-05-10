@@ -61,6 +61,18 @@ public abstract class BaseDao<T> extends GenericDAOImpl<T, Long> {
 	}
 
 	/**
+	 * 指删除
+	 * */
+	@Override
+	public void removeByIds(Long... ids) {
+		super.removeByIds(ids);
+	}
+
+	public void removeByIds(T... entities) {
+		super.remove(entities);
+	}
+
+	/**
 	 * 一般查询
 	 * 
 	 * @param exps
@@ -68,7 +80,8 @@ public abstract class BaseDao<T> extends GenericDAOImpl<T, Long> {
 	 */
 	public <RT> List<RT> query(List<Expression> exps) {
 		Search search = new Search(persistentClass);
-		for (Iterator<Expression> iterator = exps.iterator(); iterator.hasNext();) {
+		for (Iterator<Expression> iterator = exps.iterator(); iterator
+				.hasNext();) {
 			Expression ep = iterator.next();
 			search.addFilter(ep.getFilter());
 		}
@@ -87,7 +100,8 @@ public abstract class BaseDao<T> extends GenericDAOImpl<T, Long> {
 	public Pager<T> query(List<Expression> exps, int pageNumber, int pageSize) {
 		Pager<T> pager = new Pager<T>();
 		Search search = new Search(persistentClass);
-		for (Iterator<Expression> iterator = exps.iterator(); iterator.hasNext();) {
+		for (Iterator<Expression> iterator = exps.iterator(); iterator
+				.hasNext();) {
 			Expression ep = iterator.next();
 			search.addFilter(ep.getFilter());
 		}

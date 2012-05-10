@@ -30,6 +30,10 @@ public abstract class BaseReousrceService<T> {
 	public boolean remove(T entity) {
 		return getDao().remove(entity);
 	}
+	
+	public void removeByIds(Long... id){
+		getDao().removeByIds(id);
+	}
 
 	public abstract EntityDao<T> getDao();
 }
